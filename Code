@@ -1,0 +1,27 @@
+# IMPORTS
+
+import pandas as pd # Pour le dataframe
+import numpy as np # Pour la normalisation et calculs de moyenne
+import matplotlib.pyplot as plt # Pour la visualisation
+
+import librosa # Permet de lire et d'analyser les fichiers wav
+import librosa.display # Permet de récupérer les spectrogrammes des audio
+import librosa.feature
+
+import os # C'est ce qui va nous permettre d'itérer sur les fichiers de l'environnement de travail*
+
+
+# CREATION DU DATASET
+
+
+genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 
+          'jazz', 'metal', 'pop', 'reggae', 'rock'] # Liste des genres musicaux qui vonr être présents dans le dataset
+
+audio_files = {}
+
+for g in genres:
+  audio_files[g] = []
+
+for g in genres:
+  for audio in os.listdir(f'C:\\Users\\alban\\Desktop\\Data-Python\\genres_original\\{g}'): 
+    audio_files[g].append(librosa.load(f'C:\\Users\\alban\\Desktop\\Data-Python\\genres_original\\{g}\\{audio}')[0])
